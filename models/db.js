@@ -8,7 +8,7 @@ var SALT_WORK_FACTOR = 10;
 
 
 //var dbURI = 'mongodb://your_username:your_password@ds043615.mongolab.com:43615/leavethemarks';
-var dbURI = 'mongodb://admin@123:admin@321@ds021663.mlab.com:21663/senthilleavethemarks';
+var dbURI = 'mongodb://<admin@123>:<admin@321>@ds021663.mlab.com:21663/senthilleavethemarks';
 
 
 
@@ -73,19 +73,20 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
 // Build the User model
 mongoose.model( 'User', userSchema );
 
-// Stories Schema
+// Comments Schema
 
-var storiesSchema = new mongoose.Schema({
+var commentsSchema = new mongoose.Schema({
   author:String,
-  title: {type: String,unique:true},
+  name:{type: String},
+  email:{type: String,unique:true},
+  title:{type: String,unique:true},
   created_at:{type:Date,default:Date.now},
   summary:String,
   content: {type: String},
-  imageLink:String,
   comments:[{body:String,commented_by:String,date:Date}],
   slug:String
 });
 
 // Build the User model
 
-mongoose.model( 'Story', storiesSchema,'stories');
+mongoose.model( 'Comment', commentsSchema,'comments');

@@ -63,7 +63,7 @@ exports.login=function(req,res){
          req.session.username=user.username;
          req.session.loggedIn=true;
          console.log("Got User : "+req.session.username);
-         res.render("new-story",{session:req.session});
+         res.render("new-comment",{session:req.session});
        }else{
          console.log("Authentication UnSucessfull");
          var message="Invalid email or password";

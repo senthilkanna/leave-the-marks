@@ -5,7 +5,7 @@ var db=require('./models/db.js');
 
 var routes=require('./routes/route.js');
 var user=require('./routes/user.js');
-var story=require('./routes/story.js');
+var comment=require('./routes/comment.js');
 var bodyParser=require('body-parser');
 
 var session=require('express-session');
@@ -26,7 +26,7 @@ app.use(session({secret:"qazwsxedcrfvtgbyhnujm",resave: true, saveUninitialized:
 
 app.get('/',routes.index);
 
-app.get('/stories',story.stories);
+app.get('/comments',comment.comments);
 
 app.get('/register',routes.register);
 
@@ -38,13 +38,13 @@ app.get('/login',routes.login);
 
 app.post('/authenticate',user.login);
 
-app.get('/new-story',routes.newStory);
-app.post('/add-story',story.addStory);
+app.get('/new-comment',routes.newComment);
+app.post('/add-comment',comment.addComment);
 
 
-app.get('/stories/:story',story.getStory);
+app.get('/comments/:comment',comment.getComment);
 
-app.post('/stories/:slug/saveComment',story.saveComment);
+app.post('/comments/:slug/saveComment',comment.saveComment);
 
 app.get('/techStack',routes.techStack);
 
